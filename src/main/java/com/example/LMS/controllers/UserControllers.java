@@ -1,48 +1,37 @@
 package com.example.LMS.controllers;
 
-
-import com.example.LMS.models.Admin;
-import com.example.LMS.models.Student;
-import com.example.LMS.models.Teacher;
 import com.example.LMS.models.User;
 import com.example.LMS.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
 import java.util.List;
-
 
 @RestController
 @RequestMapping("/api/users")
 public class UserControllers {
 
+    @Autowired
+    private UserService userService;
 
-        private final UserService userService;
+    @PostMapping
+    public User createUser(@RequestBody User user) {
+        return userService.saveUser(user);
+    }
 
-        @Autowired
-        public UserController(UserService userService) {
-            this.userService = userService;
-        }
+    @GetMapping("/{id}")
+    public Optional<User> getUser(@PathVariable Long id) {
+        return userService.getUserById(id);
+    }
 
-        @PostMapping("/admin")
-        public ResponseEntity<Admin> createAdmin(@RequestBody Admin admin) {
-            return ResponseEntity.ok(userService.createAdmin(admin));
-        }
+    @GetMapping
+    public List<User> getAllUsers() {
+        return userService.getAllUsers();
+    }
 
-        @PostMapping("/student")
-        public ResponseEntity<Student> createStudent(@RequestBody Student student) {
-            return ResponseEntity.ok(userService.createStudent(student));
-        }
-
-        @PostMapping("/teacher")
-        public ResponseEntity<Teacher> createTeacher(@RequestBody Teacher teacher) {
-            return ResponseEntity.ok(userService.createTeacher(teacher));
-        }
-
-        @GetMapping("/all")
-        public ResponseEntity<List<User>> getAllUsers() {
-            return ResponseEntity.ok(userService.getAllUsers());
-        }
-
+    @DeleteMapping("/{id}")
+    public void deleteUser(@PathVariable Long id) {
+        userService.deleteUser(id);
+    }
 }

@@ -1,13 +1,9 @@
 package com.example.LMS.models;
 
-
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import java.time.LocalDate;
-import java.util.List;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -21,13 +17,16 @@ public class Assignment {
 
         private String title;
         private String description;
-        private LocalDate dueDate;
+        private LocalDateTime deadline;
 
         @ManyToOne
+        private Classroom classroom;
+
+        @ManyToOne
+        private Admin createdBy;
+
+        @ManyToOne
+        @JoinColumn(name = "course_id")
         private Course course;
-
-        @OneToMany(mappedBy = "assignment")
-        private List<Submission> submissions;
-
 
 }

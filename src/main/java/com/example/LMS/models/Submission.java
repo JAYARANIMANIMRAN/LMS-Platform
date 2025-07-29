@@ -1,11 +1,9 @@
 package com.example.LMS.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -18,13 +16,16 @@ public class Submission {
         private Long id;
 
         private String fileUrl;
-        private LocalDate submittedAt;
+        private LocalDateTime submittedAt;
 
         @ManyToOne
         private Assignment assignment;
 
         @ManyToOne
-        private Student student;
+        private Student submittedBy;
 
+        @ManyToOne
+        @JoinColumn(name = "student_id")
+        private Student student;
 
 }

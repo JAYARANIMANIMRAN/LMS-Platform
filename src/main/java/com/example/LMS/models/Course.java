@@ -27,10 +27,11 @@ public class Course {
         @ManyToOne
         private Classroom classroom;
 
-        @OneToMany(mappedBy = "course")
+        @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
         private List<Material> materials;
 
-        @OneToMany(mappedBy = "course")
+
+        @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
         private List<Assignment> assignments;
 
 

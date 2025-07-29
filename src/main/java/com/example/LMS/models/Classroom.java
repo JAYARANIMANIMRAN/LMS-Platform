@@ -1,10 +1,9 @@
 package com.example.LMS.models;
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-import java.util.List;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.*;
 
 @Entity
 @Data
@@ -16,13 +15,11 @@ public class Classroom {
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id;
 
-        private String name;
+        private String className;
+
+        @ManyToOne
+        private Admin createdBy;
 
         @ManyToMany
-        private List<Student> students;
-
-        @OneToMany(mappedBy = "classroom")
-        private List<Course> courses;
-
-
+        private List<Student> students = new ArrayList<>();
 }
