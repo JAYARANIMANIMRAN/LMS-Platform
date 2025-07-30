@@ -1,4 +1,4 @@
-package com.example.LMS.service;
+package com.example.LMS.services;
 
 import com.example.LMS.models.Course;
 import com.example.LMS.models.Teacher;

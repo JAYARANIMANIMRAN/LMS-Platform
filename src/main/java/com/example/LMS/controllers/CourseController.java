@@ -1,7 +1,7 @@
 package com.example.LMS.controllers;
 
 import com.example.LMS.models.Course;
-import com.example.LMS.service.CourseService;
+import com.example.LMS.services.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
