@@ -1,9 +1,16 @@
 package com.example.LMS.models;
 
 import jakarta.persistence.*;
-import java.util.Set;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "users")
 public class User {
     @Id
@@ -14,8 +21,9 @@ public class User {
     private String email;
     private String password;
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    private Set<String> roles;
+    private String role;
 
-    // Getters, Setters, Constructors
+    public String getRole() {
+        return role;
+    }
 }

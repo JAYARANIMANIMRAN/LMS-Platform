@@ -2,6 +2,7 @@ package com.example.LMS.security;
 
 import com.example.LMS.models.User;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.Collections;
@@ -18,9 +19,17 @@ public class CustomUserDetails implements UserDetails {
         return user;
     }
 
+    public Long getId() {
+        return user.getId(); // for extracting ID
+    }
+
+    public String getRole() {
+        return user.getRole(); // ✅ for extracting role in JwtTokenProvider
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singleton(() -> "ROLE_" + user.getRole().toUpperCase());
+        return Collections.singleton(new SimpleGrantedAuthority("ROLE_" + user.getRole()));
     }
 
     @Override

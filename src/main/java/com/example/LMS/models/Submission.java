@@ -1,20 +1,26 @@
 package com.example.LMS.models;
 
 import jakarta.persistence.*;
+import lombok.*;
+
+import java.time.LocalDate;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Submission {
         @Id @GeneratedValue
         private Long id;
-
-        private String submittedFileUrl;
-        private Integer marks;
+        private String fileUrl;
 
         @ManyToOne
-        @JoinColumn(name = "student_id")
-        private Student student;
+        private User student;
 
         @ManyToOne
-        @JoinColumn(name = "assignment_id")
         private Assignment assignment;
+
+        private LocalDate submittedDate;
+
+
 }

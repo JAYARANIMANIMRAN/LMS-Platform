@@ -13,7 +13,7 @@ public class TeacherController {
     private TeacherService teacherService;
 
     @PostMapping("/class")
-    public String createClass(@RequestBody ClassRoom classRoom) {
+    public String createClass(@RequestBody Classroom classRoom) {
         return teacherService.createClass(classRoom);
     }
 

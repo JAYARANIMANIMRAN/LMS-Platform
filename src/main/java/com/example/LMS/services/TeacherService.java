@@ -8,19 +8,19 @@ import org.springframework.stereotype.Service;
 @Service
 public class TeacherService {
 
-    @Autowired private ClassRoomRepository classRoomRepo;
+    @Autowired private ClassroomRepository classRoomRepo;
     @Autowired private StudentRepository studentRepo;
     @Autowired private MaterialRepository materialRepo;
     @Autowired private AssignmentRepository assignmentRepo;
     @Autowired private TeacherRepository teacherRepo;
 
-    public String createClass(ClassRoom classRoom) {
+    public String createClass(Classroom classRoom) {
         classRoomRepo.save(classRoom);
         return "Class created successfully!";
     }
 
     public String addStudent(Long classId, Student student) {
-        ClassRoom classRoom = classRoomRepo.findById(classId)
+        Classroom classRoom = classRoomRepo.findById(classId)
                 .orElseThrow(() -> new RuntimeException("Class not found"));
         student.setClassRoom(classRoom);
         studentRepo.save(student);
@@ -28,7 +28,7 @@ public class TeacherService {
     }
 
     public String postMaterial(Long classId, Material material) {
-        ClassRoom classRoom = classRoomRepo.findById(classId)
+        Classroom classRoom = classRoomRepo.findById(classId)
                 .orElseThrow(() -> new RuntimeException("Class not found"));
         material.setClassRoom(classRoom);
         materialRepo.save(material);
@@ -36,7 +36,7 @@ public class TeacherService {
     }
 
     public String postAssignment(Long classId, Assignment assignment) {
-        ClassRoom classRoom = classRoomRepo.findById(classId)
+        Classroom classRoom = classRoomRepo.findById(classId)
                 .orElseThrow(() -> new RuntimeException("Class not found"));
         assignment.setClassRoom(classRoom);
         assignmentRepo.save(assignment);
