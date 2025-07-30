@@ -1,25 +1,25 @@
 package com.example.LMS.models;
 
 import jakarta.persistence.*;
-import lombok.*;
-
-import java.util.*;
+import java.util.List;
 
 @Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class Classroom {
+public class ClassRoom {
+    @Id @GeneratedValue
+    private Long id;
 
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long id;
+    private String name;
 
-        private String className;
+    @ManyToOne
+    @JoinColumn(name = "teacher_id")
+    private Teacher teacher;
 
-        @ManyToOne
-        private Admin createdBy;
+    @OneToMany(mappedBy = "classRoom", cascade = CascadeType.ALL)
+    private List<Student> students;
 
-        @ManyToMany
-        private List<Student> students = new ArrayList<>();
+    @OneToMany(mappedBy = "classRoom", cascade = CascadeType.ALL)
+    private List<Material> materials;
+
+    @OneToMany(mappedBy = "classRoom", cascade = CascadeType.ALL)
+    private List<Assignment> assignments;
 }

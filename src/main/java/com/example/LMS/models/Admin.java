@@ -1,18 +1,17 @@
 package com.example.LMS.models;
 
-
 import jakarta.persistence.*;
+import java.util.List;
 
 @Entity
-@DiscriminatorValue("ADMIN")
-public class Admin extends User {
+public class Admin {
+    @Id @GeneratedValue
+    private Long id;
 
-    public Admin() {
-        super();
-    }
+    private String name;
+    private String email;
+    private String password;
 
-    public Admin(String name, String email, String password) {
-        super(Long.valueOf(name), email, password, "ADMIN");
-    }
-
+    @OneToMany(mappedBy = "admin", cascade = CascadeType.ALL)
+    private List<College> colleges;
 }

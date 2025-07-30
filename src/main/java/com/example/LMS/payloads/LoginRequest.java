@@ -1,18 +1,10 @@
 package com.example.LMS.payloads;
 
-public class AuthRequest {
+public class LoginRequest {
     private String username;
     private String password;
 
-    // Constructors
-    public AuthRequest() {}
-
-    public AuthRequest(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
-
-    // Getters and setters
+    // Getters & Setters
     public String getUsername() {
         return username;
     }

@@ -1,16 +1,10 @@
 package com.example.LMS.models;
 
 import jakarta.persistence.*;
-import lombok.*;
 
 @Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class Material {
-
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @Id @GeneratedValue
         private Long id;
 
         private String title;
@@ -18,13 +12,6 @@ public class Material {
         private String fileUrl;
 
         @ManyToOne
-        private Classroom classroom;
-
-        @ManyToOne
-        private Admin uploadedBy;
-
-        @ManyToOne
-        @JoinColumn(name = "course_id")
-        private Course course;
-
+        @JoinColumn(name = "classroom_id")
+        private ClassRoom classRoom;
 }

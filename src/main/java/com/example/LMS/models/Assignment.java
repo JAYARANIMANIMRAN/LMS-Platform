@@ -1,32 +1,25 @@
 package com.example.LMS.models;
 
 import jakarta.persistence.*;
-import lombok.*;
-
-import java.time.LocalDateTime;
+import java.util.Date;
+import java.util.List;
 
 @Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class Assignment {
-
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @Id @GeneratedValue
         private Long id;
 
         private String title;
         private String description;
-        private LocalDateTime deadline;
+        private String fileUrl;
+
+        @Temporal(TemporalType.DATE)
+        private Date dueDate;
 
         @ManyToOne
-        private Classroom classroom;
+        @JoinColumn(name = "classroom_id")
+        private ClassRoom classRoom;
 
-        @ManyToOne
-        private Admin createdBy;
-
-        @ManyToOne
-        @JoinColumn(name = "course_id")
-        private Course course;
-
+        @OneToMany(mappedBy = "assignment", cascade = CascadeType.ALL)
+        private List<Submission> submissions;
 }

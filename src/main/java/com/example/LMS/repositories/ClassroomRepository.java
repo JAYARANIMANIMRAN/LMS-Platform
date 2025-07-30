@@ -1,7 +1,10 @@
 package com.example.LMS.repositories;
 
-import com.example.LMS.models.Classroom;
+import com.example.LMS.models.ClassRoom;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ClassroomRepository extends JpaRepository<Classroom, Long> {
+import java.util.List;
+
+public interface ClassroomRepository extends JpaRepository<ClassRoom, Long> {
+    List<ClassRoom> findByTeacherId(Long teacherId);
 }
