@@ -1,5 +1,6 @@
 package com.example.LMS.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,5 +23,6 @@ public class College {
     private Admin admin;
 
     @OneToMany(mappedBy = "college", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Department> departments;
 }

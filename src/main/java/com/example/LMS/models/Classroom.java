@@ -29,4 +29,5 @@ public class Classroom {
 
     @OneToMany(mappedBy = "classRoom", cascade = CascadeType.ALL)
     private List<Assignment> assignments;
+
 }

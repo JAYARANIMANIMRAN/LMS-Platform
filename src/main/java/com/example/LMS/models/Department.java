@@ -1,5 +1,7 @@
 package com.example.LMS.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,8 +21,16 @@ public class Department {
 
     @ManyToOne
     @JoinColumn(name = "college_id")
+    @JsonBackReference
     private College college;
 
     @OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Teacher> teachers;
+
+    @OneToOne
+    @JoinColumn(name = "hod_id")
+    private Teacher hod;
+
+
 }
